@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { View, Text, FlatList, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import { storeData } from './utils/asyncStorage.js'
+
+
 
 function Contacts ({ navigation, route }) {
     const [search, setSearch] = useState('');
@@ -21,6 +24,7 @@ function Contacts ({ navigation, route }) {
 
 
     function handlePress(item) {
+      storeData('name', item.name)
       navigation.navigate('Estimate', { data: item })
     }
     

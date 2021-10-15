@@ -28,8 +28,7 @@ function Empty({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <Text>Looks like there's no loved one to connect with, let's add one!</Text>
-
+            <Text style={styles.text}>Looks like there's no loved one to connect with, let's add one!</Text>
             <TouchableOpacity style={styles.button} onPress={handlePress}>
                 <Text>Add Loved One Profile</Text>
             </TouchableOpacity>
@@ -51,5 +50,31 @@ const styles = StyleSheet.create({
       backgroundColor: "#DDDDDD",
       padding: 10
     },
+    text: {
+      fontSize: 20,
+      color: '#101010',
+      marginTop: 60,
+      fontWeight: '700'
+    },
+    listItem: {
+      marginTop: 10,
+      paddingVertical: 20,
+      paddingHorizontal: 20,
+      backgroundColor: '#fff',
+      flexDirection: 'row'
+    },
+    coverImage: {
+      width: 100,
+      height: 100,
+      borderRadius: 8
+    },
+    metaInfo: {
+      marginLeft: 10
+    },
+    title: {
+      fontSize: 18,
+      width: 200,
+      padding: 10
+    }
   });
   

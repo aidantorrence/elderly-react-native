@@ -5,18 +5,17 @@ function DoB ({ navigation, route }) {
     const [data, setData] = useState(route.params);
 
     function handlePress(item) {
-        navigation.navigate('Schedule')
+        navigation.navigate('Profile')
       }
     return (
         <View>
-            <Text style={styles.listItem} >The calculated average life expectancy of a 79 year old woman is</Text>
-            <Text style={styles.listItem}>89</Text>
             <TouchableOpacity onPress={handlePress}>
                 <View>
-                    <Text style={styles.button}>Discard</Text>
-                    <Text style={styles.button}>Add to Profile</Text>
+                    <Text style={styles.button}>Cancel</Text>
+                    <Text style={styles.button}>Add</Text>
                 </View>
             </TouchableOpacity>
+            <Text>Insert Calendar Here</Text>
         </View>
     )
 }

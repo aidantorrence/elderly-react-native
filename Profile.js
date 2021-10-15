@@ -8,13 +8,11 @@ function DoB ({ navigation, route }) {
         navigation.navigate('Schedule')
       }
     return (
-        <View>
-            <Text style={styles.listItem} >The calculated average life expectancy of a 79 year old woman is</Text>
-            <Text style={styles.listItem}>89</Text>
+        <View style={styles.listItem}>
+            <Text  >Kate Bell</Text>
             <TouchableOpacity onPress={handlePress}>
                 <View>
-                    <Text style={styles.button}>Discard</Text>
-                    <Text style={styles.button}>Add to Profile</Text>
+                    <Text >Schedule Call</Text>
                 </View>
             </TouchableOpacity>
         </View>

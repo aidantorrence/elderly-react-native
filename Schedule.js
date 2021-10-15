@@ -5,16 +5,15 @@ function DoB ({ navigation, route }) {
     const [data, setData] = useState(route.params);
 
     function handlePress(item) {
-        navigation.navigate('Schedule')
+        navigation.navigate('ScheduleCalendar')
       }
     return (
         <View>
-            <Text style={styles.listItem} >The calculated average life expectancy of a 79 year old woman is</Text>
-            <Text style={styles.listItem}>89</Text>
+            <Text style={styles.listItem}>Let's schedule a time to connect with your loved one.</Text>
             <TouchableOpacity onPress={handlePress}>
                 <View>
-                    <Text style={styles.button}>Discard</Text>
-                    <Text style={styles.button}>Add to Profile</Text>
+                    <Text style={styles.button}>Not right now</Text>
+                    <Text style={styles.button}>Schedule</Text>
                 </View>
             </TouchableOpacity>
         </View>
@@ -22,7 +21,6 @@ function DoB ({ navigation, route }) {
 }
 
 export default DoB
-
 
 const styles = StyleSheet.create({
     container: {
@@ -63,3 +61,4 @@ const styles = StyleSheet.create({
       padding: 10
     }
   });
+  
