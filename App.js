@@ -12,6 +12,8 @@ import LifeExpectancy from './LifeExpectancy'
 import Schedule from './Schedule'
 import ScheduleCalendar from './ScheduleCalendar'
 import Profile from './Profile'
+import Calendar from './Calendar'
+// import Hello from './Hello'
 
 const Stack = createNativeStackNavigator();
 
@@ -19,15 +21,17 @@ export default function App() {
 
   return (
     <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Empty" component={Empty} />
-          <Stack.Screen name="Contacts" component={Contacts} />
-          <Stack.Screen name="Estimate" component={Estimate} />
-          <Stack.Screen name="DoB" component={DoB} />
-          <Stack.Screen name="LifeExpectancy" component={LifeExpectancy} />
-          <Stack.Screen name="Schedule" component={Schedule} />
-          <Stack.Screen name="ScheduleCalendar" component={ScheduleCalendar} />
-          <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Navigator >
+          {/* <Stack.Screen name="Hello" component={Hello} /> */}
+          {/* <Stack.Screen name="Calendar" component={Calendar} /> */}
+          <Stack.Screen options={{ headerShown: false }} name="Empty" component={Empty} />
+          <Stack.Screen options={{ headerShown: false }} name="Contacts" component={Contacts} />
+          <Stack.Screen options={{ headerShown: false }} name="Estimate" component={Estimate} />
+          <Stack.Screen options={{ headerShown: false }} name="DoB" component={DoB} />
+          <Stack.Screen options={{ headerShown: false }} name="LifeExpectancy" component={LifeExpectancy} />
+          <Stack.Screen options={{ headerShown: false }} name="Schedule" component={Schedule} />
+          <Stack.Screen options={{ headerShown: false }} name="ScheduleCalendar" component={ScheduleCalendar} />
+          <Stack.Screen options={{ headerShown: false }} name="Profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
     

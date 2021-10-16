@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { expectancies } from './utils/conversion'
 
 function DoB ({ navigation, route }) {
     const [data, setData] = useState(route.params);
+    const [age,setAge] = useState('79')
 
     function handlePress(item) {
         navigation.navigate('Schedule')
@@ -10,7 +12,7 @@ function DoB ({ navigation, route }) {
     return (
         <View>
             <Text style={styles.listItem} >The calculated average life expectancy of a 79 year old woman is</Text>
-            <Text style={styles.listItem}>89</Text>
+            <Text style={styles.listItem}>{expectancies[age].f}</Text>
             <TouchableOpacity onPress={handlePress}>
                 <View>
                     <Text style={styles.button}>Discard</Text>

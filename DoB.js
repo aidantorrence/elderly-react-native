@@ -1,8 +1,18 @@
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native'
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 function DoB ({ navigation, route }) {
-    const [data, setData] = useState(route.params);
+    const [date, setDate] = useState(new Date(-864042434000));
+    const [mode, setMode] = useState('date');
+    const [show, setShow] = useState(true);
+
+
+    const handleChange = (event, selectedDate) => {
+        const currentDate = selectedDate || date;
+        setShow(Platform.OS === 'ios');
+        setDate(currentDate);
+      };
 
     function handlePress(item) {
         navigation.navigate('LifeExpectancy')
@@ -10,9 +20,22 @@ function DoB ({ navigation, route }) {
     return (
         <View>
             <Text style={styles.listItem}>What's their date of birth?</Text>
+
+                <View>
+                    <Text style={styles.listItem}>Select</Text>
+                </View>
+
+            <DateTimePicker
+                testID="dateTimePicker"
+                value={date}
+                mode={mode}
+                is24Hour={true}
+                display="default"
+                onChange={handleChange}
+              />
             <TouchableOpacity onPress={handlePress}>
                 <View>
-                    <Text style={styles.button}>MM/DD/YYYY</Text>
+                    <Text style={styles.button}>Estimate</Text>
                 </View>
             </TouchableOpacity>
         </View>

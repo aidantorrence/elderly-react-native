@@ -12,7 +12,8 @@ function Estimate ({ navigation, route }) {
             <Text style={styles.listItem}>Let's Estimate the time we can spend with them</Text>
             <TouchableOpacity onPress={handlePress}>
                 <View>
-                    <Text style={styles.button} >Estimate</Text>
+                    <Text style={styles.button} >Skip</Text>
+                    <Text style={styles.button} >Continue</Text>
                 </View>
             </TouchableOpacity>
         </View>

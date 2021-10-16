@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, FlatList, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import { View, SafeAreaView, Text, FlatList, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import { storeData } from './utils/asyncStorage.js'
 
 
@@ -50,7 +50,11 @@ function Contacts ({ navigation, route }) {
           </View>
         );
     }
-    return (<>
+    return (
+    <SafeAreaView>
+      <View>
+        <Text>Choose a Contact</Text>
+      </View>
         <View
             style={{
               backgroundColor: '#fff',
@@ -60,9 +64,6 @@ function Contacts ({ navigation, route }) {
             }}
           >
             <TextInput
-            //   autoCapitalize="none"
-            //   autoCorrect={false}
-            //   clearButtonMode="always"
               value={search}
               onChangeText={text => handleSearch(text)}
               placeholder="Search"
@@ -80,10 +81,7 @@ function Contacts ({ navigation, route }) {
                 </TouchableOpacity>
             )}
         />
-        {/* // <View>
-        //     {route.params.map(user => <Text key={user.id}>{user.name}</Text>)}
-        // </View> */}
-    </>)
+    </SafeAreaView>)
 }
 
 export default Contacts

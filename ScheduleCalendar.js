@@ -1,12 +1,22 @@
 import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import DateTimePicker from '@react-native-community/datetimepicker';
 
-function DoB ({ navigation, route }) {
+function ScheduleCalendar ({ navigation, route }) {
     const [data, setData] = useState(route.params);
+    const [date, setDate] = useState(new Date());
+    const [time, setTime] = useState(new Date());
+    const [mode, setMode] = useState('date');
+    const [show, setShow] = useState(true);
 
     function handlePress(item) {
         navigation.navigate('Profile')
       }
+    const handleChange = (event, selectedDate) => {
+        const currentDate = selectedDate || date;
+        setShow(Platform.OS === 'ios');
+        setDate(currentDate);
+    };
     return (
         <View>
             <TouchableOpacity onPress={handlePress}>
@@ -15,12 +25,27 @@ function DoB ({ navigation, route }) {
                     <Text style={styles.button}>Add</Text>
                 </View>
             </TouchableOpacity>
-            <Text>Insert Calendar Here</Text>
+            <DateTimePicker
+                testID="dateTimePicker"
+                value={date}
+                mode={mode}
+                is24Hour={true}
+                display="default"
+                onChange={handleChange}
+              />
+            <DateTimePicker
+                testID="dateTimePicker"
+                value={date}
+                mode={'time'}
+                is24Hour={true}
+                display="default"
+                onChange={handleChange}
+              />
         </View>
     )
 }
 
-export default DoB
+export default ScheduleCalendar
 
 
 const styles = StyleSheet.create({
