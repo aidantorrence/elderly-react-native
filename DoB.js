@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native'
+import { View, SafeAreaView, Text, TouchableOpacity, StyleSheet, Platform, Image } from 'react-native'
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 function DoB ({ navigation, route }) {
@@ -18,12 +18,15 @@ function DoB ({ navigation, route }) {
         navigation.navigate('LifeExpectancy')
       }
     return (
-        <View>
-            <Text style={styles.listItem}>What's their date of birth?</Text>
+        <SafeAreaView style={styles.container} >
+            <View style={styles.main}>
+                <Image style={{width: 150, height: 150, borderRadius: 300,}}source={require('./assets/GrandMomMay.png')}/>
+                <Text style={styles.mainText} >Grand Mom May</Text>
+            </View>
+            <View style={styles.body}>
+                <Text style={styles.midText}>What is their date of birth?</Text>
+            </View>            
 
-                <View>
-                    <Text style={styles.listItem}>Select</Text>
-                </View>
 
             <DateTimePicker
                 testID="dateTimePicker"
@@ -38,7 +41,7 @@ function DoB ({ navigation, route }) {
                     <Text style={styles.button}>Estimate</Text>
                 </View>
             </TouchableOpacity>
-        </View>
+        </SafeAreaView>
     )
 }
 
@@ -49,37 +52,44 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',
-      justifyContent: 'center',
     },
+    main: {
+        display: 'flex',
+        alignItems: 'center',
+        margin: 20,
+      },
+    mainText: {
+        margin: 20,
+        fontSize: 20,
+        color: '#105F64',
+      },
+    body: {
+        flex: 1
+    },
+    midText: {
+        margin: 20,
+        fontSize: 33,
+        color: '#105F64',
+      },
     button: {
-      alignItems: "center",
-      backgroundColor: "#DDDDDD",
-      padding: 10
+        padding: 15,
+        alignItems: 'center',
+        borderRadius: 40,
+        width: 130,
+        margin: 40,
     },
-    text: {
-      fontSize: 20,
-      color: '#101010',
-      marginTop: 60,
-      fontWeight: '700'
+    buttonText: {
+        fontSize: 20,
+        color: 'white',
     },
-    listItem: {
-      marginTop: 10,
-      paddingVertical: 20,
-      paddingHorizontal: 20,
-      backgroundColor: '#fff',
-      flexDirection: 'row'
+    skip: {
+        backgroundColor: 'gray',
     },
-    coverImage: {
-      width: 100,
-      height: 100,
-      borderRadius: 8
+    continue: {
+        backgroundColor: '#56B1B1',
     },
-    metaInfo: {
-      marginLeft: 10
-    },
-    title: {
-      fontSize: 18,
-      width: 200,
-      padding: 10
+    bottom: {
+        display: 'flex',
+        flexDirection: 'row',
     }
   });

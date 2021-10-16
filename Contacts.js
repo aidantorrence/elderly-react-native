@@ -6,16 +6,16 @@ import { storeData } from './utils/asyncStorage.js'
 
 function Contacts ({ navigation, route }) {
     const [search, setSearch] = useState('');
-    const [data, setData] = useState(route.params);
-
-
-
-
+    const [data, setData] = useState(route.params.sort((a,b) => {
+      a = a.firstName.toLowerCase() 
+      b = b.firstName.toLowerCase()
+      return a > b ? 1 : (a < b ? -1 : 0);
+    }))
     
     const handleSearch = text => {
         setSearch(text) 
         text = text.toLowerCase();
-        const filteredData = route.params.filter(user => {
+        const filteredData = data.filter(user => {
             return user.name.toLowerCase().includes(text)
         });
         setData(filteredData)
@@ -28,32 +28,14 @@ function Contacts ({ navigation, route }) {
       navigation.navigate('Estimate', { data: item })
     }
     
-    function renderHeader() {
-        return (
-          <View
-            style={{
-              backgroundColor: '#fff',
-              padding: 10,
-              marginVertical: 10,
-              borderRadius: 20
-            }}
-          >
-            <TextInput
-              autoCapitalize="none"
-              autoCorrect={false}
-              clearButtonMode="always"
-              value={search}
-              onChangeText={text => handleSearch(text)}
-              placeholder="Search"
-              style={{ backgroundColor: '#fff', paddingHorizontal: 20 }}
-            />
-          </View>
-        );
-    }
     return (
     <SafeAreaView>
-      <View>
-        <Text>Choose a Contact</Text>
+      <View style={styles.main}>
+        <TouchableOpacity onPress={()=>navigation.navigate('Empty')}>
+          <Text style={styles.cancelText}>Cancel</Text>
+        </TouchableOpacity>
+        <Text style={styles.mainText}>Choose a Contact</Text>
+        <Text style={styles.mainText}>            </Text>
       </View>
         <View
             style={{
@@ -98,6 +80,20 @@ const styles = StyleSheet.create({
       color: '#101010',
       marginTop: 60,
       fontWeight: '700'
+    },
+    mainText: {
+      fontSize: 20,
+      color: '#105F64',
+    },
+    cancelText: {
+      fontSize: 20,
+      color: '#FAAA7D',
+    },
+    main: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-evenly'
     },
     listItem: {
       marginTop: 10,

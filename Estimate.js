@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, SafeAreaView, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 
 function Estimate ({ navigation, route }) {
     const [data, setData] = useState(route.params);
@@ -8,15 +8,27 @@ function Estimate ({ navigation, route }) {
         navigation.navigate('DoB')
       }
     return (
-        <View>
-            <Text style={styles.listItem}>Let's Estimate the time we can spend with them</Text>
-            <TouchableOpacity onPress={handlePress}>
-                <View>
-                    <Text style={styles.button} >Skip</Text>
-                    <Text style={styles.button} >Continue</Text>
-                </View>
-            </TouchableOpacity>
-        </View>
+        <SafeAreaView style={styles.container}>
+            <View style={styles.main}>
+                <Image style={{width: 150, height: 150, borderRadius: 300,}}source={require('./assets/GrandMomMay.png')}/>
+                <Text style={styles.mainText} >Grand Mom May</Text>
+            </View>
+            <View style={styles.body}>
+                <Text style={styles.midText}>Let's Estimate the time we can spend with them</Text>
+            </View>
+            <View style={styles.bottom}>
+                <TouchableOpacity style={[styles.button, styles.skip]} onPress={handlePress}>
+
+                        <Text style={styles.buttonText} >Skip</Text>
+
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.button, styles.continue]} onPress={handlePress}>
+
+                    <Text style={styles.buttonText} >Continue</Text>
+
+                </TouchableOpacity>
+            </View>
+        </SafeAreaView>
     )
 }
 
@@ -29,37 +41,44 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',
-      justifyContent: 'center',
     },
+    main: {
+        display: 'flex',
+        alignItems: 'center',
+        margin: 20,
+      },
+    mainText: {
+        margin: 20,
+        fontSize: 20,
+        color: '#105F64',
+      },
+    body: {
+        flex: 1
+    },
+    midText: {
+        margin: 20,
+        fontSize: 25,
+        color: '#105F64',
+      },
     button: {
-      alignItems: "center",
-      backgroundColor: "#DDDDDD",
-      padding: 10
+        padding: 15,
+        alignItems: 'center',
+        borderRadius: 40,
+        width: 130,
+        margin: 40,
     },
-    text: {
-      fontSize: 20,
-      color: '#101010',
-      marginTop: 60,
-      fontWeight: '700'
+    buttonText: {
+        fontSize: 20,
+        color: 'white',
     },
-    listItem: {
-      marginTop: 10,
-      paddingVertical: 20,
-      paddingHorizontal: 20,
-      backgroundColor: '#fff',
-      flexDirection: 'row'
+    skip: {
+        backgroundColor: 'gray',
     },
-    coverImage: {
-      width: 100,
-      height: 100,
-      borderRadius: 8
+    continue: {
+        backgroundColor: '#56B1B1',
     },
-    metaInfo: {
-      marginLeft: 10
-    },
-    title: {
-      fontSize: 18,
-      width: 200,
-      padding: 10
+    bottom: {
+        display: 'flex',
+        flexDirection: 'row',
     }
   });
