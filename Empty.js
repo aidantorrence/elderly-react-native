@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
 import * as Contacts from 'expo-contacts'
+
+import { LinearGradient } from 'expo-linear-gradient';
 
 async function getContacts () {
     const { status } = await Contacts.requestPermissionsAsync();
@@ -27,29 +29,61 @@ function Empty({ navigation }) {
     }
 
     return (
-        <View style={styles.container}>
-            <Text>Looks like there's no loved one to connect with, let's add one!</Text>
+        <SafeAreaView >
 
-            <TouchableOpacity style={styles.button} onPress={handlePress}>
-                <Text>Add Loved One Profile</Text>
-            </TouchableOpacity>
-        </View>
+            <LinearGradient
+              // Background Linear Gradient
+              colors={['#74D1CC', '#318A8F']}
+              style={styles.background}
+            >
+            <View style={styles.container}>
+              <View style={styles.main}>
+                <Text style={styles.mainText}>To get started, add a loved one to your profile.</Text>
+              </View>
+              <TouchableOpacity style={styles.button} onPress={handlePress}>
+                  <Text style={styles.buttonText}>Add Loved One Profile</Text>
+              </TouchableOpacity>
+            </View>
+            </LinearGradient>
+        </SafeAreaView>
     )
 }
 
 export default Empty
-
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    button: {
-      alignItems: "center",
-      backgroundColor: "#DDDDDD",
-      padding: 10
-    },
-  });
-  
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: 1000,
+  },
+  button: {
+    padding: 15,
+    alignItems: 'center',
+    borderRadius: 20,
+    backgroundColor: 'white',
+    width: 200,
+  },
+  buttonText: {
+    fontWeight: 'bold',
+  },
+  text: {
+    backgroundColor: 'transparent',
+    fontSize: 15,
+    color: '#fff',
+  },
+  mainText: {
+    fontSize: 35,
+    color: 'rgba(255, 255, 255, 0.85)',
+  },
+  main: {
+    margin: 20,
+    color: 'rgba(255, 255, 255, 0.85)',
+  },
+});
