@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { SafeAreaView, View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 function ScheduleCalendar ({ navigation, route }) {
     const [data, setData] = useState(route.params);
     const [date, setDate] = useState(new Date());
-    const [time, setTime] = useState(new Date());
-    const [mode, setMode] = useState('date');
     const [show, setShow] = useState(true);
 
     function handlePress(item) {
@@ -18,30 +16,25 @@ function ScheduleCalendar ({ navigation, route }) {
         setDate(currentDate);
     };
     return (
-        <View>
-            <TouchableOpacity onPress={handlePress}>
-                <View>
-                    <Text style={styles.button}>Cancel</Text>
-                    <Text style={styles.button}>Add</Text>
-                </View>
-            </TouchableOpacity>
+        <SafeAreaView>
+            <View style={styles.main}>
+              <TouchableOpacity onPress={()=>navigation.navigate('Profile')}>
+                <Text style={styles.cancelText}>Cancel</Text>
+              </TouchableOpacity>
+              <Text style={styles.mainText}>Schedule Call</Text>
+              <TouchableOpacity onPress={()=>navigation.navigate('Profile', date.toJSON())}>
+                <Text style={styles.addText}>Add</Text>
+              </TouchableOpacity>              
+            </View>
             <DateTimePicker
                 testID="dateTimePicker"
                 value={date}
-                mode={mode}
+                mode={'datetime'}
                 is24Hour={true}
-                display="default"
+                display="inline"
                 onChange={handleChange}
               />
-            <DateTimePicker
-                testID="dateTimePicker"
-                value={date}
-                mode={'time'}
-                is24Hour={true}
-                display="default"
-                onChange={handleChange}
-              />
-        </View>
+        </SafeAreaView>
     )
 }
 
@@ -49,41 +42,61 @@ export default ScheduleCalendar
 
 
 const styles = StyleSheet.create({
-    container: {
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+  },
+  mainText: {
+    fontSize: 20,
+    color: '#105F64',
+  },
+  addText: {
+    fontSize: 20,
+    color: '#000',
+  },
+  cancelText: {
+    fontSize: 20,
+    color: '#FAAA7D',
+  },
+  main: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    margin: 20,
+  },
+  body: {
       flex: 1,
-      backgroundColor: '#fff',
+      display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center',
+  },
+  midText: {
+      margin: 25,
+      fontSize: 33,
+      color: '#105F64',
     },
-    button: {
-      alignItems: "center",
-      backgroundColor: "#DDDDDD",
-      padding: 10
+  midText2: {
+      margin: 20,
+      fontSize: 33,
+      color: '#FAAA7D',
     },
-    text: {
+  button: {
+      padding: 15,
+      alignItems: 'center',
+      borderRadius: 40,
+      width: 150,
+      margin: 40,
+      marginLeft: 30,
+      marginRight: 30,
+      backgroundColor: '#56B1B1',        
+  },
+  buttonText: {
       fontSize: 20,
-      color: '#101010',
-      marginTop: 60,
-      fontWeight: '700'
-    },
-    listItem: {
-      marginTop: 10,
-      paddingVertical: 20,
-      paddingHorizontal: 20,
-      backgroundColor: '#fff',
-      flexDirection: 'row'
-    },
-    coverImage: {
-      width: 100,
-      height: 100,
-      borderRadius: 8
-    },
-    metaInfo: {
-      marginLeft: 10
-    },
-    title: {
-      fontSize: 18,
-      width: 200,
-      padding: 10
-    }
-  });
+      color: 'white',
+  },
+  bottom: {
+      display: 'flex',
+      flexDirection: 'row',
+  },
+});

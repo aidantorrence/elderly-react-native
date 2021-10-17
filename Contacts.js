@@ -7,8 +7,8 @@ import { storeData } from './utils/asyncStorage.js'
 function Contacts ({ navigation, route }) {
     const [search, setSearch] = useState('');
     const [data, setData] = useState(route.params.sort((a,b) => {
-      a = a.firstName.toLowerCase() 
-      b = b.firstName.toLowerCase()
+      a = a.firstName ? a.firstName.toLowerCase() : 1
+      b = b.firstName ? b.firstName.toLowerCase() : 1
       return a > b ? 1 : (a < b ? -1 : 0);
     }))
     
@@ -16,7 +16,7 @@ function Contacts ({ navigation, route }) {
         setSearch(text) 
         text = text.toLowerCase();
         const filteredData = data.filter(user => {
-            return user.name.toLowerCase().includes(text)
+            return user.name && user.name.toLowerCase().includes(text)
         });
         setData(filteredData)
     };

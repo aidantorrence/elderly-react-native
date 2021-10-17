@@ -18,14 +18,10 @@ function Estimate ({ navigation, route }) {
             </View>
             <View style={styles.bottom}>
                 <TouchableOpacity style={[styles.button, styles.skip]} onPress={handlePress}>
-
-                        <Text style={styles.buttonText} >Skip</Text>
-
+                    <Text style={styles.buttonText} >Skip</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.button, styles.continue]} onPress={handlePress}>
-
                     <Text style={styles.buttonText} >Continue</Text>
-
                 </TouchableOpacity>
             </View>
         </SafeAreaView>

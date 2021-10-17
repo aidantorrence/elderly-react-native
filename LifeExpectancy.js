@@ -1,67 +1,85 @@
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { SafeAreaView, View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import { expectancies } from './utils/conversion'
 
-function DoB ({ navigation, route }) {
-    const [data, setData] = useState(route.params);
-    const [age,setAge] = useState('79')
+function LifeExpectancy ({ navigation, route }) {
+    const [age,setAge] = useState(route.params)
 
     function handlePress(item) {
         navigation.navigate('Schedule')
       }
     return (
-        <View>
-            <Text style={styles.listItem} >The calculated average life expectancy of a 79 year old woman is</Text>
-            <Text style={styles.listItem}>{expectancies[age].f}</Text>
-            <TouchableOpacity onPress={handlePress}>
-                <View>
-                    <Text style={styles.button}>Discard</Text>
-                    <Text style={styles.button}>Add to Profile</Text>
-                </View>
-            </TouchableOpacity>
-        </View>
+        <SafeAreaView style={styles.container} >
+            <View style={styles.main}>
+                <Image style={{width: 150, height: 150, borderRadius: 300,}}source={require('./assets/GrandMomMay.png')}/>
+                <Text style={styles.mainText} >Grand Mom May</Text>
+            </View>
+            <View style={styles.body}>
+              <Text style={styles.midText} >The calculated average life expectancy of a {age} year old woman is currently...</Text>
+              <Text style={styles.midText2}>{expectancies[age].f} years</Text>
+            </View>
+            <View style={styles.bottom}>
+              <TouchableOpacity style={[styles.button]} onPress={handlePress}>
+                <Text style={styles.buttonText} >Discard</Text>
+              </TouchableOpacity>  
+              <TouchableOpacity style={[styles.button]} onPress={handlePress}>
+                <Text style={styles.buttonText} >Add to Profile</Text>
+              </TouchableOpacity>  
+            </View>
+        </SafeAreaView>
     )
 }
 
-export default DoB
+export default LifeExpectancy
 
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+  },
+  main: {
+      display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center',
+      margin: 20,
     },
-    button: {
-      alignItems: "center",
-      backgroundColor: "#DDDDDD",
-      padding: 10
-    },
-    text: {
+  mainText: {
+      margin: 20,
       fontSize: 20,
-      color: '#101010',
-      marginTop: 60,
-      fontWeight: '700'
+      color: '#105F64',
     },
-    listItem: {
-      marginTop: 10,
-      paddingVertical: 20,
-      paddingHorizontal: 20,
-      backgroundColor: '#fff',
-      flexDirection: 'row'
+  body: {
+      flex: 1,
+      display: 'flex',
+      alignItems: 'center',
+  },
+  midText: {
+      margin: 25,
+      fontSize: 33,
+      color: '#105F64',
     },
-    coverImage: {
-      width: 100,
-      height: 100,
-      borderRadius: 8
+  midText2: {
+      margin: 20,
+      fontSize: 33,
+      color: '#FAAA7D',
     },
-    metaInfo: {
-      marginLeft: 10
-    },
-    title: {
-      fontSize: 18,
-      width: 200,
-      padding: 10
-    }
-  });
+  button: {
+      padding: 15,
+      alignItems: 'center',
+      borderRadius: 40,
+      width: 150,
+      margin: 40,
+      marginLeft: 30,
+      marginRight: 30,
+      backgroundColor: '#56B1B1',        
+  },
+  buttonText: {
+      fontSize: 20,
+      color: 'white',
+  },
+  bottom: {
+      display: 'flex',
+      flexDirection: 'row',
+  },
+});

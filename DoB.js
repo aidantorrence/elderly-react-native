@@ -2,11 +2,17 @@ import React, { useState } from 'react'
 import { View, SafeAreaView, Text, TouchableOpacity, StyleSheet, Platform, Image } from 'react-native'
 import DateTimePicker from '@react-native-community/datetimepicker';
 
+function calculate_age(dob) { 
+  var diff_ms = Date.now() - dob.getTime();
+  var age_dt = new Date(diff_ms); 
+
+  return Math.abs(age_dt.getUTCFullYear() - 1970);
+}
+
 function DoB ({ navigation, route }) {
     const [date, setDate] = useState(new Date(-864042434000));
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(true);
-
 
     const handleChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
@@ -15,7 +21,7 @@ function DoB ({ navigation, route }) {
       };
 
     function handlePress(item) {
-        navigation.navigate('LifeExpectancy')
+        navigation.navigate('LifeExpectancy', calculate_age(date))
       }
     return (
         <SafeAreaView style={styles.container} >
@@ -25,22 +31,18 @@ function DoB ({ navigation, route }) {
             </View>
             <View style={styles.body}>
                 <Text style={styles.midText}>What is their date of birth?</Text>
-            </View>            
-
-
-            <DateTimePicker
-                testID="dateTimePicker"
-                value={date}
-                mode={mode}
-                is24Hour={true}
-                display="default"
-                onChange={handleChange}
-              />
-            <TouchableOpacity onPress={handlePress}>
-                <View>
-                    <Text style={styles.button}>Estimate</Text>
-                </View>
-            </TouchableOpacity>
+              <DateTimePicker
+                  testID="dateTimePicker"
+                  value={date}
+                  mode={mode}
+                  is24Hour={true}
+                  display="spinner"
+                  onChange={handleChange}
+                />
+              </View>    
+            <TouchableOpacity style={[styles.button]} onPress={handlePress}>
+              <Text style={styles.buttonText} >Estimate</Text>
+            </TouchableOpacity>              
         </SafeAreaView>
     )
 }
@@ -77,19 +79,14 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         width: 130,
         margin: 40,
+        backgroundColor: '#56B1B1',        
     },
     buttonText: {
         fontSize: 20,
         color: 'white',
     },
-    skip: {
-        backgroundColor: 'gray',
-    },
-    continue: {
-        backgroundColor: '#56B1B1',
-    },
     bottom: {
         display: 'flex',
         flexDirection: 'row',
-    }
+    },
   });
