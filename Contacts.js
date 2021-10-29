@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, SafeAreaView, Text, FlatList, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import { View, SafeAreaView, Text, FlatList, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native'
 import { storeData } from './utils/asyncStorage.js'
 
 
@@ -25,31 +25,34 @@ function Contacts ({ navigation, route }) {
 
     function handlePress(item) {
       storeData('name', item.name)
-      navigation.navigate('Estimate', { data: item })
+      navigation.navigate('LifeCalendarIntro', { data: item })
     }
     
     return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <View style={styles.main}>
         <TouchableOpacity onPress={()=>navigation.navigate('Empty')}>
           <Text style={styles.cancelText}>Cancel</Text>
         </TouchableOpacity>
-        <Text style={styles.mainText}>Choose a Contact</Text>
+        <Text style={styles.mainText}>Pick a Contact</Text>
         <Text style={styles.mainText}>            </Text>
       </View>
         <View
             style={{
-              backgroundColor: '#fff',
+              backgroundColor: 'rgba(118, 118, 128, 0.12)',
               padding: 10,
-              marginVertical: 10,
-              borderRadius: 20
+              borderRadius: 12,
+              margin: 20,
+              flexDirection: 'row',
             }}
           >
+            <Image resizeMode="contain" style={{width: 20, height: 20,}}source={require('./assets/magnifyingglass.png')}/>
             <TextInput
               value={search}
               onChangeText={text => handleSearch(text)}
               placeholder="Search"
-              style={{ backgroundColor: '#fff', paddingHorizontal: 20 }}
+              placeholderTextColor='rgba(60, 60, 67, 0.6)'
+              style={{ paddingHorizontal: 20, fontSize: 20}}
             />
           </View>
         <FlatList
@@ -71,9 +74,8 @@ export default Contacts
 
 const styles = StyleSheet.create({
     container: {
+      backgroundColor: '#ffffff',
       flex: 1,
-      backgroundColor: '#f8f8f8',
-      alignItems: 'center'
     },
     text: {
       fontSize: 20,
@@ -84,10 +86,14 @@ const styles = StyleSheet.create({
     mainText: {
       fontSize: 20,
       color: '#105F64',
+      fontFamily: 'Spartan_500Medium',
+      letterSpacing: -.5,
     },
     cancelText: {
       fontSize: 20,
       color: '#FAAA7D',
+      fontFamily: 'Spartan_500Medium',
+      letterSpacing: -.5,
     },
     main: {
       display: 'flex',
@@ -96,11 +102,18 @@ const styles = StyleSheet.create({
       justifyContent: 'space-evenly'
     },
     listItem: {
-      marginTop: 10,
-      paddingVertical: 20,
-      paddingHorizontal: 20,
+      paddingVertical: 18,
+      paddingHorizontal: 18,
       backgroundColor: '#fff',
-      flexDirection: 'row'
+      flexDirection: 'row',
+      borderTopColor: 'rgba(0, 0, 0, 0.2)',
+      borderBottomColor: 'rgba(0, 0, 0, 0.2)',
+      borderTopWidth: .4,
+      borderBottomWidth: .4,
+    },
+    listItemText: {
+      fontWeight: '500',
+      fontSize: 20,
     },
     coverImage: {
       width: 100,
