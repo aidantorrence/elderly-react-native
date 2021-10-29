@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { View, SafeAreaView, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 
-function Estimate ({ navigation, route }) {
+function LifeCalendarTwo ({ navigation, route }) {
     const [data, setData] = useState(route.params);
 
     function handlePress(item) {
-        navigation.navigate('DoB')
+        console.log(route.params)
+        navigation.navigate('Schedule')
       }
     return (
         <SafeAreaView style={styles.container}>
@@ -14,23 +15,29 @@ function Estimate ({ navigation, route }) {
                 <Text style={styles.mainText} >Grand Mom May</Text>
             </View>
             <View style={styles.body}>
-                <Text style={styles.midText}>Let's estimate the time we can spend with them</Text>
+                <Text style={styles.midText}>{route.params * 52} weeks</Text>
             </View>
+
+            <View style={styles.flexrow_container}>
+                {new Array(route.params).fill(0).map((el,idx) => <Cell key={idx}></Cell>)}
+            </View>
+
             <View style={styles.bottom}>
-                <TouchableOpacity style={[styles.button, styles.skip]} onPress={handlePress}>
-                    <Text style={styles.buttonText} >Skip</Text>
-                </TouchableOpacity>
                 <TouchableOpacity style={[styles.button, styles.continue]} onPress={handlePress}>
-                    <Text style={styles.buttonText} >Continue</Text>
+                    <Text style={styles.buttonText} >Schedule</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
     )
 }
 
-export default Estimate
+export default LifeCalendarTwo
 
-
+function Cell () {
+    return <View style={styles.cell}>
+        {new Array(52).fill(0).map((el,idx) => <View key={idx} style={styles.smallCell}></View>)}
+    </View>
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -38,6 +45,25 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       alignItems: 'center',
     },
+    cell:{
+        height: 60,
+        width: 60,
+        margin: 14,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+    },
+    smallCell:{
+        backgroundColor: '#FAAA7D',
+        height: 5,
+        width: 5,
+        margin: 1,
+    },
+    flexrow_container: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        margin: 35,
+        flex: 1,
+      },
     main: {
         display: 'flex',
         alignItems: 'center',
@@ -49,12 +75,11 @@ const styles = StyleSheet.create({
         color: '#105F64',
       },
     body: {
-        flex: 1
     },
     midText: {
         margin: 20,
-        fontSize: 25,
-        color: '#105F64',
+        fontSize: 35,
+        color: '#FAAA7D',
       },
     button: {
         padding: 15,

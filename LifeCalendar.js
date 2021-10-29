@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { View, SafeAreaView, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 
-function Estimate ({ navigation, route }) {
+function LifeCalendar ({ navigation, route }) {
     const [data, setData] = useState(route.params);
 
     function handlePress(item) {
-        navigation.navigate('DoB')
+        console.log(route.params)
+        navigation.navigate('LifeCalendarTwo',route.params)
       }
     return (
         <SafeAreaView style={styles.container}>
@@ -14,21 +15,24 @@ function Estimate ({ navigation, route }) {
                 <Text style={styles.mainText} >Grand Mom May</Text>
             </View>
             <View style={styles.body}>
-                <Text style={styles.midText}>Let's estimate the time we can spend with them</Text>
+                <Text style={styles.midStartText}>That's... </Text>
+                <Text style={styles.midText}>{route.params} years</Text>
             </View>
+
+            <View style={styles.flexrow_container}>
+                {new Array(route.params).fill(0).map((el,idx) => <View key={idx} style={styles.cell}></View>)}
+            </View>
+
             <View style={styles.bottom}>
-                <TouchableOpacity style={[styles.button, styles.skip]} onPress={handlePress}>
-                    <Text style={styles.buttonText} >Skip</Text>
-                </TouchableOpacity>
                 <TouchableOpacity style={[styles.button, styles.continue]} onPress={handlePress}>
-                    <Text style={styles.buttonText} >Continue</Text>
+                    <Text style={styles.buttonText} >In Months</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
     )
 }
 
-export default Estimate
+export default LifeCalendar
 
 
 
@@ -38,6 +42,18 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       alignItems: 'center',
     },
+    cell:{
+        backgroundColor: '#FAAA7D',
+        height: 60,
+        width: 60,
+        margin: 16,
+    },
+    flexrow_container: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        margin: 30,
+        flex: 1,
+      },
     main: {
         display: 'flex',
         alignItems: 'center',
@@ -49,11 +65,18 @@ const styles = StyleSheet.create({
         color: '#105F64',
       },
     body: {
-        flex: 1
+        flexDirection: 'row',
     },
     midText: {
         margin: 20,
-        fontSize: 25,
+        marginHorizontal: 0,
+        fontSize: 35,
+        color: '#FAAA7D',
+      },
+    midStartText: {
+        margin: 20,
+        marginHorizontal: 0,
+        fontSize: 35,
         color: '#105F64',
       },
     button: {
