@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { View, SafeAreaView, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 
+import { LinearGradient } from 'expo-linear-gradient';
+
 function LifeCalendarTwo ({ navigation, route }) {
     const [data, setData] = useState(route.params);
 
@@ -11,7 +13,7 @@ function LifeCalendarTwo ({ navigation, route }) {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.main}>
-                <Image style={{width: 150, height: 150, borderRadius: 300,}}source={require('./assets/GrandMomMay.png')}/>
+                <Image style={{width: 105, height: 105, borderRadius: 300,}}source={require('./assets/GrandMomMay.png')}/>
                 <Text style={styles.mainText} >Grand Mom May</Text>
             </View>
             <View style={styles.body}>
@@ -23,9 +25,18 @@ function LifeCalendarTwo ({ navigation, route }) {
             </View>
 
             <View style={styles.bottom}>
-                <TouchableOpacity style={[styles.button, styles.continue]} onPress={handlePress}>
+            <LinearGradient
+              // Background Linear Gradient
+              colors={['#318A8F', '#54AFAF', '#5BB6B5' ]} 
+              locations={[ 0, 0.7, 1]}
+              style={[styles.button, styles.continue]}
+              start={{ x: 0, y: 1 }}
+              end={{ x: 1, y: 1 }}
+            >
+                <TouchableOpacity  onPress={handlePress}>
                     <Text style={styles.buttonText} >Schedule</Text>
                 </TouchableOpacity>
+            </LinearGradient>
             </View>
         </SafeAreaView>
     )
@@ -48,49 +59,57 @@ const styles = StyleSheet.create({
     cell:{
         height: 60,
         width: 60,
-        margin: 14,
+        margin: 8,
         flexDirection: 'row',
         flexWrap: 'wrap',
+        width: 72,
     },
     smallCell:{
         backgroundColor: '#FAAA7D',
-        height: 5,
-        width: 5,
-        margin: 1,
+        height: 4.5,
+        width: 4.5,
+        margin: 2,
     },
     flexrow_container: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        margin: 35,
+        margin: 30,
+        marginTop: 10,
         flex: 1,
       },
     main: {
         display: 'flex',
         alignItems: 'center',
         margin: 20,
-      },
+        marginTop: 85,
+    },
     mainText: {
         margin: 20,
         fontSize: 20,
         color: '#105F64',
-      },
+        fontFamily: 'Spartan_600SemiBold',
+        letterSpacing: -.5,
+    },
     body: {
     },
     midText: {
         margin: 20,
-        fontSize: 35,
+        fontSize: 28,
         color: '#FAAA7D',
+        fontFamily: 'Spartan_400Regular',
+        letterSpacing: -1,
       },
     button: {
         padding: 15,
         alignItems: 'center',
-        borderRadius: 40,
-        width: 130,
+        borderRadius: 27,
         margin: 40,
     },
     buttonText: {
         fontSize: 20,
         color: 'white',
+        fontFamily: 'Spartan_500Medium',
+        letterSpacing: -.41,
     },
     skip: {
         backgroundColor: 'gray',
