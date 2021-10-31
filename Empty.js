@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     marginTop: 20,
+    borderWidth: .2,
   },
   buttonText: {
     fontWeight: 'bold',
