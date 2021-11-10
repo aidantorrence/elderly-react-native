@@ -17,22 +17,24 @@ function Profile ({ navigation, route }) {
 
     return (
 
-
+      
+      <SafeAreaView style={styles.container}>
         <LinearGradient
-          colors={['#74D1CC', '#318A8F']}
-          style={styles.background}
+        // Background Linear Gradient
+        colors={['#188B92', '#6ECBC7', '#FEC3A2' ]} 
+        locations={[ 0, 0.4, .8]}
+        style={styles.background}
         >
-          <SafeAreaView style={styles.container}>
             <View style={styles.main}>
               <Text style={styles.mainText}> </Text>
               <Text style={styles.mainText}>Loved Ones</Text>
               <TouchableOpacity >
-                  <Text style={styles.addText} >Add</Text>
+                <Image resizeMode="contain" style={{width: 25, height: 25,}}source={require('./assets/personBadgePlus.png')}/>
               </TouchableOpacity>
             </View>
             <ProfileItem date={month + ' ' + day+', '+time}/>
-          </SafeAreaView>
         </LinearGradient>
+          </SafeAreaView>
     )
 }
 
@@ -46,12 +48,12 @@ function ProfileItem ({ date }) {
 
   return (
       <View style={styles.listItem}>
-        <Image style={{width: 75, height: 75, borderRadius: 100,}}source={require('./assets/GrandMomMay.png')}/>
-        <View>
+        <Image style={{width: 92, height: 92, borderRadius: 100,}}source={require('./assets/GrandMomMay.png')}/>
+        <View style={styles.listItemBody}>
           <Text style={styles.titleText}>Grand Mom May</Text>
           <TouchableOpacity onPress={handlePress}>
             <View style={styles.date}>
-              <Image resizeMode="contain" style={{width: 20, height: 20,}}source={require('./assets/calendarIcon.png')}/>
+              <Image resizeMode="contain" style={{width: 23, height: 23,}}source={require('./assets/calendarIcon.png')}/>
               <Text style={styles.dateText}>  {date}</Text>
             </View>
           </TouchableOpacity>
@@ -65,18 +67,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    margin: 30,
   },
   listItem: {
     display: 'flex',
     flexDirection: 'row',
-    backgroundColor: 'rgba(200, 208, 202, 0.2)',
+    backgroundColor: 'rgba(18, 122, 129, 0.22)',
     alignItems: 'center',
-    justifyContent: 'space-evenly',
-    margin: 20,
+    // justifyContent: 'space-evenly',
+    margin: 15,
     padding: 15,
-    width: '100%',
+    paddingLeft: 18,
     borderRadius: 10,
+  },
+  listItemBody: {
+    marginLeft: 20,
   },
   background: {
     position: 'absolute',
@@ -101,21 +105,27 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   mainText: {
-    fontSize: 25,
-    color: 'rgba(255, 255, 255, 0.85)',
+    fontSize: 20,
+    color: '#fff',
+    fontFamily: 'Spartan_500Medium',
+    letterSpacing: -.41,
   },
   addText: {
     fontSize: 20,
     color: 'rgba(255, 255, 255, 0.85)',
   },
   titleText: {
-    fontSize: 18,
+    fontSize: 19.5,
     fontWeight: 'bold',
     color: 'rgba(255, 255, 255, 1)',
+    fontFamily: 'Spartan_600SemiBold',
+    letterSpacing: -.41,
+    marginBottom: 8,
   },
   dateText: {
-    fontSize: 14,
+    fontSize: 15,
     color: 'rgba(255, 255, 255, 1)',
+    fontFamily: 'Spartan_500Medium',
   },
   date: {
     display: 'flex',
@@ -123,13 +133,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   main: {
-    display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     margin: 20,
-    color: 'rgba(255, 255, 255, 0.85)',
-    width: '100%',
+    marginLeft: 30,
+    marginRight: 30,
+    marginTop: 80,
+    marginBottom: 10,
   },
 });
 

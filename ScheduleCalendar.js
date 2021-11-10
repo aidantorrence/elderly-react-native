@@ -4,25 +4,24 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 function ScheduleCalendar ({ navigation, route }) {
     const [data, setData] = useState(route.params);
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState(Math.ceil(new Date() / 1000 / 60 / 30) * 30 * 60 * 1000);
     const [show, setShow] = useState(true);
 
     function handlePress(item) {
         navigation.navigate('Profile')
       }
     const handleChange = (event, selectedDate) => {
-        const currentDate = selectedDate || date;
         setShow(Platform.OS === 'ios');
-        setDate(currentDate);
+        setDate(selectedDate || date);
     };
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.container}>
             <View style={styles.main}>
               <TouchableOpacity onPress={()=>navigation.navigate('Profile')}>
                 <Text style={styles.cancelText}>Cancel</Text>
               </TouchableOpacity>
               <Text style={styles.mainText}>Schedule Call</Text>
-              <TouchableOpacity onPress={()=>navigation.navigate('Profile', date.toJSON())}>
+              <TouchableOpacity onPress={()=>navigation.navigate('Profile', new Date(date).toJSON())}>
                 <Text style={styles.addText}>Add</Text>
               </TouchableOpacity>              
             </View>
@@ -43,21 +42,26 @@ export default ScheduleCalendar
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    flex: 1,
   },
   mainText: {
     fontSize: 20,
     color: '#105F64',
+    fontFamily: 'Spartan_600SemiBold',
+    letterSpacing: -.41,
   },
   addText: {
     fontSize: 20,
-    color: '#000',
+    color: 'rgba(16, 95, 100, 0.45)',
+    fontFamily: 'Spartan_500Medium',
+    letterSpacing: -.41,
   },
   cancelText: {
     fontSize: 20,
     color: '#FAAA7D',
+    fontFamily: 'Spartan_500Medium',
+    letterSpacing: -.41,
   },
   main: {
     display: 'flex',
