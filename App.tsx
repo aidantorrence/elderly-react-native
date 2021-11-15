@@ -4,20 +4,20 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Empty from './Empty'
-import Contacts from './Contacts'
-import Estimate from './Estimate'
-import DoB from './DoB'
-import LifeExpectancy from './LifeExpectancy'
-import Schedule from './Schedule'
-import ScheduleCalendar from './ScheduleCalendar'
-import Profile from './Profile'
+import Empty from './Empty.js'
+import Contacts from './Contacts.js'
+import Estimate from './Estimate.js'
+import DoB from './DoB.js'
+import LifeExpectancy from './LifeExpectancy.js'
+import Schedule from './Schedule.js'
+import ScheduleCalendar from './ScheduleCalendar.js'
+import Profile from './Profile.js'
 import Calendar from './Calendar'
-import LifeCalendar from './LifeCalendar'
-import LifeCalendarTwo from './LifeCalendarTwo'
-import LifeCalendarThree from './LifeCalendarThree'
-import LifeCalendarIntro from './LifeCalendarIntro'
-import Gender from './Gender'
+import LifeCalendar from './LifeCalendar.js'
+import LifeCalendarTwo from './LifeCalendarTwo.js'
+import LifeCalendarThree from './LifeCalendarThree.js'
+import LifeCalendarIntro from './LifeCalendarIntro.js'
+import Gender from './Gender.js'
 import { useFonts, Spartan_300Light,  Spartan_100Thin, Spartan_200ExtraLight, Spartan_400Regular, Spartan_500Medium, Spartan_600SemiBold, Spartan_700Bold } from '@expo-google-fonts/spartan';
 import AppLoading from 'expo-app-loading';
 
