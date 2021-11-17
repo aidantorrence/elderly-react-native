@@ -1,21 +1,24 @@
 import React, { useState } from 'react'
 import { View, SafeAreaView, Text, FlatList, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native'
 import { storeData } from './utils/asyncStorage.js'
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from './types/screenNavigator'
+import * as ExpoContacts from 'expo-contacts'
 
+type ContactProps = NativeStackScreenProps<RootStackParamList, 'Contacts'>;
 
-
-function Contacts ({ navigation, route }) {
+function Contacts ({ navigation, route }: ContactProps) {
     const [search, setSearch] = useState('');
-    const [data, setData] = useState(route.params.sort((a,b) => {
-      a = a.firstName ? a.firstName.toLowerCase() : 1
-      b = b.firstName ? b.firstName.toLowerCase() : 1
-      return a > b ? 1 : (a < b ? -1 : 0);
+    const [data, setData] = useState(route.params?.slice().sort((a, b) => {
+      const numA = a.firstName ? a.firstName.toLowerCase() : 1
+      const numB  = b.firstName ? b.firstName.toLowerCase() : 1
+      return numA > numB ? 1 : (numA < numB ? -1 : 0);
     }))
     
-    const handleSearch = text => {
+    const handleSearch = (text: string) => {
         setSearch(text) 
         text = text.toLowerCase();
-        const filteredData = data.filter(user => {
+        const filteredData = data?.filter(user => {
             return user.name && user.name.toLowerCase().includes(text)
         });
         setData(filteredData)
@@ -23,9 +26,9 @@ function Contacts ({ navigation, route }) {
 
 
 
-    function handlePress(item) {
+    function handlePress(item: ExpoContacts.Contact) {
       storeData('name', item.name)
-      navigation.navigate('LifeCalendarIntro', { data: item })
+      navigation.navigate('LifeCalendarIntro')
     }
     
     return (

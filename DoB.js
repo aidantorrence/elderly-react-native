@@ -23,7 +23,7 @@ function DoB ({ navigation, route }) {
       };
 
     function handlePress(item) {
-        navigation.navigate('LifeExpectancy', {age: calculate_age(date),gender: route.params})
+        navigation.navigate('LifeExpectancy', {age: calculate_age(date),gender: route.params.gender })
       }
     return (
         <SafeAreaView style={styles.container} >

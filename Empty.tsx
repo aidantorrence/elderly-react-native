@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Image } from 'react-native';
 import * as Contacts from 'expo-contacts'
-
 import { LinearGradient } from 'expo-linear-gradient';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from './types/screenNavigator'
+
+type Props = NativeStackScreenProps<RootStackParamList, 'Empty'>;
 
 async function getContacts () {
     const { status } = await Contacts.requestPermissionsAsync();
@@ -16,8 +19,11 @@ async function getContacts () {
     }
 }
 
+//generate navigation typescript types
 
-function Empty({ navigation }) {
+
+
+function Empty({ navigation }: Props) {
     const [contacts, setContacts] = useState([])
 
 
@@ -38,10 +44,10 @@ function Empty({ navigation }) {
             >
             <View style={styles.main}>
               <TouchableOpacity onPress={()=>navigation.navigate('Profile')}>
-                <Text style={styles.cancelText}>   </Text>
+                <Text >   </Text>
               </TouchableOpacity>
               <Text style={styles.mainText}>Loved Ones</Text>
-              <TouchableOpacity onPress={()=>navigation.navigate('Profile', date.toJSON())}>
+              <TouchableOpacity onPress={()=>navigation.navigate('Profile')}>
                 <Image resizeMode="contain" style={{width: 25, height: 25,}}source={require('./assets/personBadgePlus.png')}/>
               </TouchableOpacity>              
             </View>
