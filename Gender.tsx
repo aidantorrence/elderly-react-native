@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import { View, SafeAreaView, Text, TouchableOpacity, StyleSheet, Platform, Image } from 'react-native'
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from './types/screenNavigator'
 
-function Gender ({ navigation, route }) {
-    const [gender, setGender] = useState('male');
+type Props = NativeStackScreenProps<RootStackParamList, 'Gender'>;
 
-    function handlePress(gender) {
-        navigation.navigate('DoB', gender)
+function Gender ({ navigation }: Props) {
+
+    function handlePress(gender: string) {
+        navigation.navigate('DoB', { gender })
       }
     return (
         <SafeAreaView style={styles.container} >

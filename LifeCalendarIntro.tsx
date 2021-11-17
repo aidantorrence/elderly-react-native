@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { View, SafeAreaView, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
-
 import { LinearGradient } from 'expo-linear-gradient';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from './types/screenNavigator'
 
-function LifeCalendarIntro ({ navigation, route }) {
-    const [data, setData] = useState(route.params);
+type Props = NativeStackScreenProps<RootStackParamList, 'LifeCalendarIntro'>;
 
-    function handlePress(item) {
+function LifeCalendarIntro ({ navigation }: Props) {
+
+    function handlePress() {
         navigation.navigate('Gender')
       }
     return (
